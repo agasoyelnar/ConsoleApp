@@ -1,0 +1,15 @@
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/bin/Debug/net10.0/RepositoryLayer.deps.json
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/bin/Debug/net10.0/RepositoryLayer.dll
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/bin/Debug/net10.0/RepositoryLayer.pdb
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/bin/Debug/net10.0/DomainLayer.dll
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/bin/Debug/net10.0/DomainLayer.pdb
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/RepositoryLayer.csproj.AssemblyReference.cache
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/RepositoryLayer.GeneratedMSBuildEditorConfig.editorconfig
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/RepositoryLayer.AssemblyInfoInputs.cache
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/RepositoryLayer.AssemblyInfo.cs
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/RepositoryLayer.csproj.CoreCompileInputs.cache
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/Reposito.A0A61804.Up2Date
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/RepositoryLayer.dll
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/refint/RepositoryLayer.dll
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/RepositoryLayer.pdb
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/ref/RepositoryLayer.dll

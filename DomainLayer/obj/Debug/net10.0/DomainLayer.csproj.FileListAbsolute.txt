@@ -1,0 +1,11 @@
+/Users/peyman/Desktop/CourseApp/DomainLayer/bin/Debug/net10.0/DomainLayer.deps.json
+/Users/peyman/Desktop/CourseApp/DomainLayer/bin/Debug/net10.0/DomainLayer.dll
+/Users/peyman/Desktop/CourseApp/DomainLayer/bin/Debug/net10.0/DomainLayer.pdb
+/Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/DomainLayer.GeneratedMSBuildEditorConfig.editorconfig
+/Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/DomainLayer.AssemblyInfoInputs.cache
+/Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/DomainLayer.AssemblyInfo.cs
+/Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/DomainLayer.csproj.CoreCompileInputs.cache
+/Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/DomainLayer.dll
+/Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/refint/DomainLayer.dll
+/Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/DomainLayer.pdb
+/Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/ref/DomainLayer.dll
