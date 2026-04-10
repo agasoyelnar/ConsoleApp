@@ -51,6 +51,28 @@ public class GroupService:IGroupService
     {
         return _groupRepository.GetAll();
     }
- 
+    public List<Group> GetAllByTeacher(string teacher)
+    {
+        if (string.IsNullOrWhiteSpace(teacher))
+            throw new Exception("Müəllim adı boş ola bilməz!");
+
+        var groups = _groupRepository.GetAll(g => g.Teacher == teacher);
+        if (groups.Count == 0)
+            throw new Exception("Bu müəllimə aid qrup tapılmadı!");
+
+        return groups;
+    }
+
+    public List<Group> GetAllByRoom(int roomCount)
+    {
+        if (roomCount <= 0)
+            throw new Exception("Otaq sayı 0-dan böyük olmalıdır!");
+
+        var groups = _groupRepository.GetAll(g => g.RoomCount == roomCount);
+        if (groups.Count == 0)
+            throw new Exception("Bu otaq sayına aid qrup tapılmadı!");
+
+        return groups;
+    }
 }
 

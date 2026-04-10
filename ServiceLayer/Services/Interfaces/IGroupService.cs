@@ -8,5 +8,7 @@ public interface IGroupService
     void Delete(int id);
     Group GetById(int id);
     List<Group> GetAll();
+    List<Group> GetAllByTeacher(string teacher);
+    List<Group> GetAllByRoom(int roomCount);
     
 }   

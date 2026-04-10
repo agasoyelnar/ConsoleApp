@@ -12,7 +12,7 @@ namespace CourseSystem
         { 
             GroupController groupController=new ();
             Helper.PrintConsole(ConsoleColor.Blue,"Asagidakilardan birini secin: ");
-            Helper.PrintConsole(ConsoleColor.Green, text: "1. Qrup yarat,\n2. ID ilə qrup axtar,\n3. Bütün qrupları göstər,\n4. Qrupu sil,\n5. Qrupu yenilə");  while (true)
+            Helper.PrintConsole(ConsoleColor.Green, text: "1. Qrup yarat,\n2. ID ilə qrup axtar,\n3. Bütün qrupları göstər,\n4. Qrupu sil,\n5. Qrupu yenilə,\n6. Müəllimə görə qrupları göstər,\n7. Otaq sayına görə qrupları göstər");            while (true)
             {
                 SelectOption:string selectOption = Console.ReadLine();
                 int selectNumber;
@@ -36,8 +36,12 @@ namespace CourseSystem
                         case 5:
                             groupController.Update();
                             goto SelectOption;
-                        
-                        
+                        case 6:
+                            groupController.GetAllByTeacher();   
+                            goto SelectOption;
+                        case 7:
+                            groupController.GetAllByRoom();
+                            goto SelectOption;
                                 
                     }
                 }

@@ -147,5 +147,50 @@ public class GroupController
             Helper.PrintConsole(ConsoleColor.Red, text: "Zəhmət olmasa düzgün ID daxil edin!");
         }
     }
+    public void GetAllByTeacher()
+    {
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Müəllimin adını daxil edin: ");
+        string teacher = Console.ReadLine();
 
+        try
+        {
+            var groups = _groupService.GetAllByTeacher(teacher);
+            foreach (var group in groups)
+            {
+                Helper.PrintConsole(ConsoleColor.Green, text: $"Id: {group.Id}, Ad: {group.Name}, Müəllim: {group.Teacher}, Otaq sayı: {group.RoomCount}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Helper.PrintConsole(ConsoleColor.Red, text: ex.Message);
+        }
+    }
+    public void GetAllByRoom()
+{
+    SelectCase:
+    Helper.PrintConsole(ConsoleColor.Blue, text: "Otaq sayını daxil edin: ");
+    string roomCountStr = Console.ReadLine();
+    int roomCount;
+    bool isRoomCount = int.TryParse(roomCountStr, out roomCount);
+    if (isRoomCount)
+    {
+        try
+        {
+            var groups = _groupService.GetAllByRoom(roomCount);
+            foreach (var group in groups)
+            {
+                Helper.PrintConsole(ConsoleColor.Green, text: $"Id: {group.Id}, Ad: {group.Name}, Müəllim: {group.Teacher}, Otaq sayı: {group.RoomCount}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Helper.PrintConsole(ConsoleColor.Red, text: ex.Message);
+        }
+    }
+    else
+    {
+        Helper.PrintConsole(ConsoleColor.Red, text: "Zəhmət olmasa düzgün rəqəm daxil edin!");
+        goto SelectCase;
+    }
+}
 }
