@@ -22,13 +22,22 @@ public class GroupService:IGroupService
 
     public Group Update(int id, Group group)
     {
-        throw new NotImplementedException();
-        
+        var existGroup = GetById(id);
+        if (existGroup is null)
+            throw new Exception("Yenilənəcək qrup tapılmadı!");
+
+        group.Id = id;
+        _groupRepository.Update(group);
+        return group;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        var group = GetById(id);
+        if (group is null)
+            throw new Exception("Silinəcək qrup tapılmadı!");
+
+        _groupRepository.Delete(group);
     }
 
     public Group GetById(int id)
@@ -42,5 +51,6 @@ public class GroupService:IGroupService
     {
         return _groupRepository.GetAll();
     }
+ 
 }
 

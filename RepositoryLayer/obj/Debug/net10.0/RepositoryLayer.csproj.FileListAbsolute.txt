@@ -13,3 +13,4 @@
 /Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/refint/RepositoryLayer.dll
 /Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/RepositoryLayer.pdb
 /Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/ref/RepositoryLayer.dll
+/Users/peyman/Desktop/CourseApp/RepositoryLayer/obj/Debug/net10.0/RepositoryLayer.sourcelink.json

@@ -23,12 +23,21 @@ public class GroupRepository:IRepository<Group>
 
     public void Update(Group data)
     {
-        throw new NotImplementedException();
+        var group = Get(g => g.Id == data.Id);
+        if (group is null)
+            throw new Exception("Belə bir qrup tapılmadı!");
+
+        group.Name = data.Name;
+        group.RoomCount = data.RoomCount;
     }
 
     public void Delete(Group data)
     {
-        throw new NotImplementedException();
+        var group = Get(g => g.Id == data.Id);
+        if (group is null)
+            throw new Exception("Belə bir qrup tapılmadı!");
+
+        AppDbContext<Group>.datas.Remove(group);
     }
 
     public Group Get(Predicate<Group> predicate)

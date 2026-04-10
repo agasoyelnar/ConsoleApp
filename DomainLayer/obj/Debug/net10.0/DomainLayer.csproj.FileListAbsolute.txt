@@ -9,3 +9,4 @@
 /Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/refint/DomainLayer.dll
 /Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/DomainLayer.pdb
 /Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/ref/DomainLayer.dll
+/Users/peyman/Desktop/CourseApp/DomainLayer/obj/Debug/net10.0/DomainLayer.sourcelink.json
