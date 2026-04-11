@@ -19,16 +19,8 @@ namespace CourseSystem
  \____\___/ \___/|_| \_\____/|_____| /_/   \_\_|   |_|    
 ");
 
-
-
-            //
-            // Helper.PrintConsole(ConsoleColor.Blue, "Zəhmət olmasa aşağıdakılardan birini seçin: ");
-            // Helper.PrintConsole(ConsoleColor.Green,
-            //     "1. Qrup yarat\n2. ID ilə qrup axtar\n3. Bütün qrupları göstər\n4. Qrupu sil\n5. Qrupu yenilə\n6. Müəllimə görə qrupları göstər\n7. Otaq sayına görə qrupları göstər");
-            // Console.WriteLine("-----------------------------------------------------------");
-            
-            
             GroupController groupController = new();
+            StudentController studentController = new();
 
             while (true)
             {
@@ -38,19 +30,21 @@ namespace CourseSystem
                 Helper.PrintConsole(ConsoleColor.Yellow, "       TƏLƏBƏ VƏ QRUP İDARƏETMƏ SİSTEMİ ");
                 Helper.PrintConsole(ConsoleColor.DarkGray, "===========================================================");
                 Console.WriteLine();
-                
+
                 var mainChoice = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("[blue]Əsas menyu:[/]")
                         .AddChoices(new[]
                         {
                             "1. Qrup Əməliyyatları",
-                            "2. Axtarış və Filtr (Get)",
+                            "2. Qrup Axtarış və Filtr (Get)",
+                            "3. Tələbə Əməliyyatları",
+                            "4. Tələbə Axtarış və Filtr (Get)",
                             "Çıxış"
                         }));
 
                 if (mainChoice == "Çıxış") break;
-                
+
                 if (mainChoice == "1. Qrup Əməliyyatları")
                 {
                     var groupChoice = AnsiConsole.Prompt(
@@ -67,7 +61,7 @@ namespace CourseSystem
                         case "Qrupu yenilə": groupController.Update(); break;
                     }
                 }
-                else if (mainChoice == "2. Axtarış və Filtr (Get)")
+                else if (mainChoice == "2. Qrup Axtarış və Filtr (Get)")
                 {
                     var getChoice = AnsiConsole.Prompt(
                         new SelectionPrompt<string>()
@@ -77,7 +71,7 @@ namespace CourseSystem
                                 "ID-yə görə",
                                 "Müəllimə görə",
                                 "Otaq sayına görə",
-                                "Group adina gore axtar",
+                                "Ada görə qrupu axtar",
                                 "Hamısını göstər",
                                 "Geri"
                             }));
@@ -89,8 +83,49 @@ namespace CourseSystem
                         case "ID-yə görə": groupController.GetById(); break;
                         case "Müəllimə görə": groupController.GetAllByTeacher(); break;
                         case "Otaq sayına görə": groupController.GetAllByRoom(); break;
-                        case "Group adina gore axtar": groupController.SearchByName(); break;
+                        case "Ada görə qrupu axtar": groupController.SearchByName(); break;  // ← düzəldildi
                         case "Hamısını göstər": groupController.GetAll(); break;
+                    }
+                }
+                else if (mainChoice == "3. Tələbə Əməliyyatları")
+                {
+                    var studentChoice = AnsiConsole.Prompt(
+                        new SelectionPrompt<string>()
+                            .Title("[yellow]Tələbə əməliyyatını seçin:[/]")
+                            .AddChoices(new[] 
+                                { 
+                                    "Tələbə yarat", 
+                                    "Tələbəni sil", 
+                                    "Tələbəni yenilə",
+                                    "Geri" }));
+
+                    if (studentChoice == "Geri") continue;
+
+                    switch (studentChoice)
+                    {
+                        case "Tələbə yarat": studentController.Create(); break;
+                        case "Tələbəni sil": studentController.Delete(); break;  
+                        case "Tələbəni yenilə": studentController.Update(); break;
+                    }
+                }
+                else if (mainChoice == "4. Tələbə Axtarış və Filtr (Get)")
+                {
+                    var getChoice = AnsiConsole.Prompt(
+                        new SelectionPrompt<string>()
+                            .Title("[green]Hansı növ axtarış etmək istəyirsiniz?[/]")
+                            .AddChoices(new[]
+                            {
+                                "ID-yə görə",
+                                "Yaşa görə",
+                                "Geri"
+                            }));
+
+                    if (getChoice == "Geri") continue;
+
+                    switch (getChoice)
+                    {
+                        case "ID-yə görə": studentController.GetById(); break; 
+                        case "Yaşa görə": studentController.GetAllByAge(); break;
                     }
                 }
 
@@ -100,4 +135,3 @@ namespace CourseSystem
         }
     }
 }
-

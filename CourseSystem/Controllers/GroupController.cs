@@ -19,7 +19,7 @@ public class GroupController
         Helper.PrintConsole(ConsoleColor.Blue, text: "Müəllimin adını daxil edin: ");
         string teacher = Console.ReadLine();
 
-        SelectCase:
+        SelectCase: 
         Helper.PrintConsole(ConsoleColor.White, text: "Otaq sayını daxil edin: ");
         string groupRoomCount = Console.ReadLine();
         int roomCount;
@@ -86,9 +86,7 @@ public class GroupController
             goto groupId;
         }
     }
-        
     
-
     public void GetAll()
     {
         List<Group> groups = _groupService.GetAll();
