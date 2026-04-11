@@ -1,57 +1,101 @@
 ﻿using System;
 using CourseSystem.Controllers;
 using CourseSystem.Helpers;
-using DomainLayer.Entities;
-using ServiceLayer.Services.Implementations;
+using Spectre.Console;
 
 namespace CourseSystem
 {
     class Program
     {
         static void Main(string[] args)
-        { 
-            GroupController groupController=new ();
-            Helper.PrintConsole(ConsoleColor.Blue,"Asagidakilardan birini secin: ");
-            Helper.PrintConsole(ConsoleColor.Green, text: "1. Qrup yarat,\n2. ID ilə qrup axtar,\n3. Bütün qrupları göstər,\n4. Qrupu sil,\n5. Qrupu yenilə,\n6. Müəllimə görə qrupları göstər,\n7. Otaq sayına görə qrupları göstər");            while (true)
+        {
+            Console.Clear();
+            Helper.PrintConsole(ConsoleColor.Cyan, @"
+  ____ ___  _   _ ____  ____  _____      _    ____  ____  
+ / ___/ _ \| | | |  _ \/ ___|| ____|    / \  |  _ \|  _ \ 
+
+| |  | | | | | | | |_) \___ \|  _|     / _ \ | |_) | |_) |
+| |__| |_| | |_| |  _ < ___) | |___   / ___ \|  __/|  __/ 
+ \____\___/ \___/|_| \_\____/|_____| /_/   \_\_|   |_|    
+");
+
+
+
+            //
+            // Helper.PrintConsole(ConsoleColor.Blue, "Zəhmət olmasa aşağıdakılardan birini seçin: ");
+            // Helper.PrintConsole(ConsoleColor.Green,
+            //     "1. Qrup yarat\n2. ID ilə qrup axtar\n3. Bütün qrupları göstər\n4. Qrupu sil\n5. Qrupu yenilə\n6. Müəllimə görə qrupları göstər\n7. Otaq sayına görə qrupları göstər");
+            // Console.WriteLine("-----------------------------------------------------------");
+            
+            
+            GroupController groupController = new();
+
+            while (true)
             {
-                SelectOption:string selectOption = Console.ReadLine();
-                int selectNumber;
-                bool isselectOption=int.TryParse(selectOption, out selectNumber);
-                if (isselectOption)
+                Console.Clear();
+                AnsiConsole.Write(new FigletText("COURSE APP").Centered().Color(Color.Cyan1));
+                Helper.PrintConsole(ConsoleColor.DarkGray, "===========================================================");
+                Helper.PrintConsole(ConsoleColor.Yellow, "       TƏLƏBƏ VƏ QRUP İDARƏETMƏ SİSTEMİ ");
+                Helper.PrintConsole(ConsoleColor.DarkGray, "===========================================================");
+                Console.WriteLine();
+                
+                var mainChoice = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title("[blue]Əsas menyu:[/]")
+                        .AddChoices(new[]
+                        {
+                            "1. Qrup Əməliyyatları",
+                            "2. Axtarış və Filtr (Get)",
+                            "Çıxış"
+                        }));
+
+                if (mainChoice == "Çıxış") break;
+                
+                if (mainChoice == "1. Qrup Əməliyyatları")
                 {
-                    switch (selectNumber)
+                    var groupChoice = AnsiConsole.Prompt(
+                        new SelectionPrompt<string>()
+                            .Title("[yellow]Qrup əməliyyatını seçin:[/]")
+                            .AddChoices(new[] { "Qrup yarat", "Qrupu sil", "Qrupu yenilə", "Geri" }));
+
+                    if (groupChoice == "Geri") continue;
+
+                    switch (groupChoice)
                     {
-                        case 1:
-                            groupController.Create();
-                            goto SelectOption;
-                        case 2:
-                            groupController.GetById();
-                            goto SelectOption;
-                        case 3:
-                            groupController.GetAll();
-                            goto SelectOption;
-                        case 4:
-                            groupController.Delete();
-                            goto SelectOption;
-                        case 5:
-                            groupController.Update();
-                            goto SelectOption;
-                        case 6:
-                            groupController.GetAllByTeacher();   
-                            goto SelectOption;
-                        case 7:
-                            groupController.GetAllByRoom();
-                            goto SelectOption;
-                                
+                        case "Qrup yarat": groupController.Create(); break;
+                        case "Qrupu sil": groupController.Delete(); break;
+                        case "Qrupu yenilə": groupController.Update(); break;
                     }
                 }
-                else
+                else if (mainChoice == "2. Axtarış və Filtr (Get)")
                 {
-                    Helper.PrintConsole(ConsoleColor.Red, "Please enter a option type: ");
-                    goto SelectOption;
+                    var getChoice = AnsiConsole.Prompt(
+                        new SelectionPrompt<string>()
+                            .Title("[green]Hansı növ axtarış etmək istəyirsiniz?[/]")
+                            .AddChoices(new[]
+                            {
+                                "ID-yə görə",
+                                "Müəllimə görə",
+                                "Otaq sayına görə",
+                                "Hamısını göstər",
+                                "Geri"
+                            }));
+
+                    if (getChoice == "Geri") continue;
+
+                    switch (getChoice)
+                    {
+                        case "ID-yə görə": groupController.GetById(); break;
+                        case "Müəllimə görə": groupController.GetAllByTeacher(); break;
+                        case "Otaq sayına görə": groupController.GetAllByRoom(); break;
+                        case "Hamısını göstər": groupController.GetAll(); break;
+                    }
                 }
+
+                AnsiConsole.MarkupLine("\n[grey]Davam etmək üçün hər hansı düyməyə basın...[/]");
+                Console.ReadKey(true);
             }
         }
     }
-};
+}
 

@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "5mopRBbGukY=",
+  "dgSpecHash": "HaBgs909GKY=",
   "success": true,
   "projectFilePath": "/Users/peyman/Desktop/CourseApp/CourseSystem/CourseSystem.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/peyman/.nuget/packages/spectre.console/0.55.0/spectre.console.0.55.0.nupkg.sha512",
+    "/Users/peyman/.nuget/packages/spectre.console.ansi/0.55.0/spectre.console.ansi.0.55.0.nupkg.sha512"
+  ],
   "logs": []
 }

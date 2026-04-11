@@ -1,6 +1,7 @@
 using CourseSystem.Helpers;
 using DomainLayer.Entities;
 using ServiceLayer.Services.Implementations;
+using Spectre.Console;
 
 namespace CourseSystem.Controllers;
 
@@ -10,6 +11,8 @@ public class GroupController
 
     public void Create()
     {
+        
+
         Helper.PrintConsole(ConsoleColor.Blue, text: "Qrupun adını daxil edin: ");
         string groupName = Console.ReadLine();
 
@@ -39,6 +42,16 @@ public class GroupController
             Helper.PrintConsole(ConsoleColor.Red, text: "Zəhmət olmasa düzgün rəqəm daxil edin!");
             goto SelectCase;
         }
+       
+        AnsiConsole.Status()
+            .Start("Qrup bazaya əlavə edilir...", ctx => 
+            {
+                ctx.Spinner(Spinner.Known.Dots);
+                Thread.Sleep(1500); 
+            });
+
+        
+
     }
 
     public void GetById()
@@ -72,17 +85,25 @@ public class GroupController
     public void GetAll()
     {
         List<Group> groups = _groupService.GetAll();
-        if (groups.Count != 0)
+        if (groups.Count == 0)
         {
-            foreach (var group in groups)
-            {
-                Helper.PrintConsole(ConsoleColor.Green, $"Group Id: {group.Id}, Ad: {group.Name}, Otaq sayi: {group.RoomCount}\n");
-            }
+            AnsiConsole.MarkupLine("[red]Sistemdə heç bir qrup yoxdur![/]");
+            return;
         }
-        else
+
+        var table = new Table().Border(TableBorder.Rounded);
+        table.AddColumn("[yellow]ID[/]");
+        table.AddColumn("[cyan]Qrup Adı[/]");
+        table.AddColumn("[green]Müəllim[/]");
+        table.AddColumn("[magenta]Otaq Sayı[/]");
+
+        foreach (var item in groups)
         {
-            Helper.PrintConsole(ConsoleColor.Red, "Ad daxil edin");
+            table.AddRow(item.Id.ToString(), item.Name, item.Teacher, item.RoomCount.ToString());
         }
+
+        AnsiConsole.Write(table);
+
     }
     public void Delete()
     {
