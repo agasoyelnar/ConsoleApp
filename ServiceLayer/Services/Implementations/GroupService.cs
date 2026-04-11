@@ -74,5 +74,18 @@ public class GroupService:IGroupService
 
         return groups;
     }
+
+    public List<Group> SearchByName(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new Exception("Axtarış üçün ad boş ola bilməz!");
+
+        var groups = _groupRepository.GetAll(g => g.Name.Contains(name));
+        if (groups.Count == 0)
+            throw new Exception("Bu ada uyğun qrup tapılmadı!");
+
+        return groups;
+    }
+
 }
 

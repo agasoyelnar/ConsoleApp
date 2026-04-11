@@ -77,6 +77,7 @@ namespace CourseSystem
                                 "ID-yə görə",
                                 "Müəllimə görə",
                                 "Otaq sayına görə",
+                                "Group adina gore axtar",
                                 "Hamısını göstər",
                                 "Geri"
                             }));
@@ -88,6 +89,7 @@ namespace CourseSystem
                         case "ID-yə görə": groupController.GetById(); break;
                         case "Müəllimə görə": groupController.GetAllByTeacher(); break;
                         case "Otaq sayına görə": groupController.GetAllByRoom(); break;
+                        case "Group adina gore axtar": groupController.SearchByName(); break;
                         case "Hamısını göstər": groupController.GetAll(); break;
                     }
                 }

@@ -66,21 +66,28 @@ public class GroupController
             Group group = _groupService.GetById(id);
             if (group != null)
             {
-                Helper.PrintConsole(ConsoleColor.Green, text: $"Qrup Id: {group.Id}, Ad: {group.Name}, Otaq sayı: {group.RoomCount}");
+                var table = new Table().Border(TableBorder.Rounded);
+                table.AddColumn("[yellow]ID[/]");
+                table.AddColumn("[cyan]Qrup Adı[/]");
+                table.AddColumn("[green]Müəllim[/]");
+                table.AddColumn("[magenta]Otaq Sayı[/]");
+                table.AddRow(group.Id.ToString(), group.Name, group.Teacher, group.RoomCount.ToString());
+                AnsiConsole.Write(table);
             }
             else
             {
-                Helper.PrintConsole(ConsoleColor.Red, text: "Qrup tapılmadı!");
+                AnsiConsole.MarkupLine("[red]Qrup tapılmadı![/]");
                 goto groupId;
             }
         }
         else
         {
-            Helper.PrintConsole(ConsoleColor.Red, text: "Zəhmət olmasa düzgün ID daxil edin!");
+            AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün ID daxil edin![/]");
             goto groupId;
         }
-        
     }
+        
+    
 
     public void GetAll()
     {
@@ -116,18 +123,25 @@ public class GroupController
             try
             {
                 _groupService.Delete(id);
-                Helper.PrintConsole(ConsoleColor.Green, text: $"Qrup uğurla silindi!");
+                AnsiConsole.Status()
+                    .Start("Qrup silinir...", ctx =>
+                    {
+                        ctx.Spinner(Spinner.Known.Dots);
+                        Thread.Sleep(1000);
+                    });
+                AnsiConsole.MarkupLine("[green]Qrup uğurla silindi![/]");
             }
             catch (Exception ex)
             {
-                Helper.PrintConsole(ConsoleColor.Red, text: ex.Message);
+                AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
             }
         }
         else
         {
-            Helper.PrintConsole(ConsoleColor.Red, text: "Zəhmət olmasa düzgün ID daxil edin!");
+            AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün ID daxil edin![/]");
         }
     }
+    
     public void Update()
     {
         Helper.PrintConsole(ConsoleColor.Blue, text: "Yenilənəcək qrupun ID-sini daxil edin: ");
@@ -214,4 +228,22 @@ public class GroupController
         goto SelectCase;
     }
 }
+
+    public void SearchByName()
+    {
+        Helper.PrintConsole(ConsoleColor.Blue,text: "Axtarilacaq qrup adini daxil edin" );
+        string name = Console.ReadLine();
+        try
+        {
+            var groups = _groupService.SearchByName(name);
+            foreach (var group in groups)
+            {
+                Helper.PrintConsole(ConsoleColor.Green, text: $"Id: {group.Id}, Ad: {group.Name}, Müəllim: {group.Teacher}, Otaq sayı: {group.RoomCount}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Helper.PrintConsole(ConsoleColor.Red, text: ex.Message);
+        }
+    }
 }

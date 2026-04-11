@@ -10,5 +10,6 @@ public interface IGroupService
     List<Group> GetAll();
     List<Group> GetAllByTeacher(string teacher);
     List<Group> GetAllByRoom(int roomCount);
+    List<Group> SearchByName(string name);
     
 }   
