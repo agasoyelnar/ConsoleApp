@@ -11,8 +11,6 @@ public class GroupController
 
     public void Create()
     {
-        
-
         Helper.PrintConsole(ConsoleColor.Blue, text: "Qrupun adını daxil edin: ");
         string groupName = Console.ReadLine();
 
@@ -49,9 +47,6 @@ public class GroupController
                 ctx.Spinner(Spinner.Known.Dots);
                 Thread.Sleep(1500); 
             });
-
-        
-
     }
 
     public void GetById()
@@ -112,6 +107,7 @@ public class GroupController
     }
     public void Delete()
     {
+        deleteId:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Silinəcək qrupun ID-sini daxil edin: ");
         string groupId = Console.ReadLine();
         int id;
@@ -132,16 +128,19 @@ public class GroupController
             catch (Exception ex)
             {
                 AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+                goto deleteId;  
             }
         }
         else
         {
             AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün ID daxil edin![/]");
+            goto deleteId;
         }
     }
-    
+
     public void Update()
     {
+        updateId:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Yenilənəcək qrupun ID-sini daxil edin: ");
         string groupId = Console.ReadLine();
         int id;
@@ -150,6 +149,9 @@ public class GroupController
         {
             Helper.PrintConsole(ConsoleColor.Blue, text: "Yeni qrup adını daxil edin: ");
             string groupName = Console.ReadLine();
+
+            Helper.PrintConsole(ConsoleColor.Blue, text: "Yeni müəllimin adını daxil edin: ");
+            string teacher = Console.ReadLine();
 
             SelectCase:
             Helper.PrintConsole(ConsoleColor.White, text: "Yeni otaq sayını daxil edin: ");
@@ -160,88 +162,123 @@ public class GroupController
             {
                 try
                 {
-                    Group group = new Group { Name = groupName, RoomCount = roomCount };
+                    Group group = new Group { Name = groupName, Teacher = teacher, RoomCount = roomCount };
                     var result = _groupService.Update(id, group);
-                    Helper.PrintConsole(ConsoleColor.Green, text: $"Qrup uğurla yeniləndi! Id: {result.Id}, Ad: {result.Name}");
+                    AnsiConsole.MarkupLine($"[green]Qrup uğurla yeniləndi! Id: {result.Id}, Ad: {result.Name}, Müəllim: {result.Teacher}, Otaq sayı: {result.RoomCount}[/]");
                 }
                 catch (Exception ex)
                 {
-                    Helper.PrintConsole(ConsoleColor.Red, text: ex.Message);
+                    AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+                    goto updateId; 
                 }
             }
             else
             {
-                Helper.PrintConsole(ConsoleColor.Red, text: "Zəhmət olmasa düzgün rəqəm daxil edin!");
+                AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün rəqəm daxil edin![/]");
                 goto SelectCase;
             }
         }
         else
         {
-            Helper.PrintConsole(ConsoleColor.Red, text: "Zəhmət olmasa düzgün ID daxil edin!");
+            AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün ID daxil edin![/]");
+            goto updateId;
         }
     }
     public void GetAllByTeacher()
     {
+        teacherName:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Müəllimin adını daxil edin: ");
         string teacher = Console.ReadLine();
 
         try
         {
             var groups = _groupService.GetAllByTeacher(teacher);
+
+            var table = new Table().Border(TableBorder.Rounded);
+            table.AddColumn("[yellow]ID[/]");
+            table.AddColumn("[cyan]Qrup Adı[/]");
+            table.AddColumn("[green]Müəllim[/]");
+            table.AddColumn("[magenta]Otaq Sayı[/]");
+
             foreach (var group in groups)
             {
-                Helper.PrintConsole(ConsoleColor.Green, text: $"Id: {group.Id}, Ad: {group.Name}, Müəllim: {group.Teacher}, Otaq sayı: {group.RoomCount}");
+                table.AddRow(group.Id.ToString(), group.Name, group.Teacher, group.RoomCount.ToString());
             }
+
+            AnsiConsole.Write(table);
         }
         catch (Exception ex)
         {
-            Helper.PrintConsole(ConsoleColor.Red, text: ex.Message);
+            AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+            goto teacherName;  
         }
     }
     public void GetAllByRoom()
-{
-    SelectCase:
-    Helper.PrintConsole(ConsoleColor.Blue, text: "Otaq sayını daxil edin: ");
-    string roomCountStr = Console.ReadLine();
-    int roomCount;
-    bool isRoomCount = int.TryParse(roomCountStr, out roomCount);
-    if (isRoomCount)
     {
-        try
+        SelectCase:
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Otaq sayını daxil edin: ");
+        string roomCountStr = Console.ReadLine();
+        int roomCount;
+        bool isRoomCount = int.TryParse(roomCountStr, out roomCount);
+        if (isRoomCount)
         {
-            var groups = _groupService.GetAllByRoom(roomCount);
-            foreach (var group in groups)
+            try
             {
-                Helper.PrintConsole(ConsoleColor.Green, text: $"Id: {group.Id}, Ad: {group.Name}, Müəllim: {group.Teacher}, Otaq sayı: {group.RoomCount}");
+                var groups = _groupService.GetAllByRoom(roomCount);
+
+                var table = new Table().Border(TableBorder.Rounded);
+                table.AddColumn("[yellow]ID[/]");
+                table.AddColumn("[cyan]Qrup Adı[/]");
+                table.AddColumn("[green]Müəllim[/]");
+                table.AddColumn("[magenta]Otaq Sayı[/]");
+
+                foreach (var group in groups)
+                {
+                    table.AddRow(group.Id.ToString(), group.Name, group.Teacher, group.RoomCount.ToString());
+                }
+
+                AnsiConsole.Write(table);
+            }
+            catch (Exception ex)
+            {
+                AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+                goto SelectCase;  
             }
         }
-        catch (Exception ex)
+        else
         {
-            Helper.PrintConsole(ConsoleColor.Red, text: ex.Message);
+            AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün rəqəm daxil edin![/]");
+            goto SelectCase;
         }
     }
-    else
-    {
-        Helper.PrintConsole(ConsoleColor.Red, text: "Zəhmət olmasa düzgün rəqəm daxil edin!");
-        goto SelectCase;
-    }
-}
 
     public void SearchByName()
     {
-        Helper.PrintConsole(ConsoleColor.Blue,text: "Axtarilacaq qrup adini daxil edin" );
+        searchName:
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Axtarılacaq qrup adını daxil edin: ");
         string name = Console.ReadLine();
+
         try
         {
             var groups = _groupService.SearchByName(name);
+
+            var table = new Table().Border(TableBorder.Rounded);
+            table.AddColumn("[yellow]ID[/]");
+            table.AddColumn("[cyan]Qrup Adı[/]");
+            table.AddColumn("[green]Müəllim[/]");
+            table.AddColumn("[magenta]Otaq Sayı[/]");
+
             foreach (var group in groups)
             {
-                Helper.PrintConsole(ConsoleColor.Green, text: $"Id: {group.Id}, Ad: {group.Name}, Müəllim: {group.Teacher}, Otaq sayı: {group.RoomCount}");
+                table.AddRow(group.Id.ToString(), group.Name, group.Teacher, group.RoomCount.ToString());
             }
+
+            AnsiConsole.Write(table);
         }
         catch (Exception ex)
         {
-            Helper.PrintConsole(ConsoleColor.Red, text: ex.Message);
+            AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+            goto searchName;  
         }
     }
 }

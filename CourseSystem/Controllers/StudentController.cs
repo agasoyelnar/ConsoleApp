@@ -28,26 +28,24 @@ public class StudentController
             goto SelectAge;
         }
 
-        SelectGroup:
-        Helper.PrintConsole(ConsoleColor.Blue, text: "Qrupun adını daxil edin: ");
-        string groupName = Console.ReadLine();
-
         GroupService groupService = new();
-        Group group = null;
+        var allGroups = groupService.GetAll();
+        if (allGroups.Count == 0)
+        {
+            AnsiConsole.MarkupLine("[red]Sistemdə heç bir qrup yoxdur! Əvvəlcə qrup yaradın.[/]");
+            return;
+        }
+
+        var groupChoice = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("[blue]Qrupu seçin:[/]")
+                .AddChoices(allGroups.Select(g => g.Name).ToList()));
+
+        var selectedGroup = allGroups.FirstOrDefault(g => g.Name == groupChoice);
 
         try
         {
-            group = groupService.SearchByName(groupName).FirstOrDefault();
-        }
-        catch (Exception)
-        {
-            AnsiConsole.MarkupLine("[red]Bu adda qrup tapılmadı! Yenidən cəhd edin.[/]");
-            goto SelectGroup;
-        }
-
-        try
-        {
-            Student student = new Student { Name = name, Surname = surname, Age = age, Group = group };
+            Student student = new Student { Name = name, Surname = surname, Age = age, Group = selectedGroup };
             var result = _studentService.Create(student);
 
             AnsiConsole.Status()
@@ -57,8 +55,7 @@ public class StudentController
                     Thread.Sleep(1500);
                 });
 
-            AnsiConsole.MarkupLine(
-                $"[green]Tələbə uğurla yaradıldı! Id: {result.Id}, Ad: {result.Name}, Soyad: {result.Surname}, Yaş: {result.Age}, Qrup: {result.Group.Name}[/]");
+            AnsiConsole.MarkupLine($"[green]Tələbə uğurla yaradıldı! Id: {result.Id}, Ad: {result.Name}, Soyad: {result.Surname}, Yaş: {result.Age}, Qrup: {result.Group.Name}[/]");
         }
         catch (Exception ex)
         {
@@ -99,6 +96,7 @@ public class StudentController
             catch (Exception ex)
             {
                 AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+                goto studentId; 
             }
         }
         else
@@ -211,7 +209,8 @@ public class StudentController
 
     public void GetAllByAge()
     {
-        SelectAge:Helper.PrintConsole(ConsoleColor.Blue,text:"Yaşı daxil edin:");
+        SelectAge:
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Yaşı daxil edin: ");
         string ageStr = Console.ReadLine();
         int age;
         bool isAge = int.TryParse(ageStr, out age);
@@ -220,12 +219,14 @@ public class StudentController
             try
             {
                 var students = _studentService.GetAllByAge(age);
-                var table=new Table().Border(TableBorder.Rounded);
+
+                var table = new Table().Border(TableBorder.Rounded);
                 table.AddColumn("[yellow]ID[/]");
                 table.AddColumn("[cyan]Ad[/]");
                 table.AddColumn("[cyan]Soyad[/]");
                 table.AddColumn("[green]Yaş[/]");
                 table.AddColumn("[magenta]Qrup[/]");
+
                 foreach (var student in students)
                 {
                     table.AddRow(
@@ -233,13 +234,16 @@ public class StudentController
                         student.Name,
                         student.Surname,
                         student.Age.ToString(),
-                        student.Group.Name);
+                        student.Group.Name
+                    );
                 }
+
                 AnsiConsole.Write(table);
             }
             catch (Exception ex)
             {
                 AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+                goto SelectAge;  
             }
         }
         else
@@ -251,7 +255,26 @@ public class StudentController
 
     public void GetAllByGroupId()
     {
-        SelectGroupId:Helper.PrintConsole(ConsoleColor.Blue,text:"Qrupun ID-sini daxil edin: ");
+        GroupService groupService = new();
+        var allGroups = groupService.GetAll();
+        if (allGroups.Count == 0)
+        {
+            AnsiConsole.MarkupLine("[red]Sistemdə heç bir qrup yoxdur![/]");
+            return;
+        }
+
+        var groupTable = new Table().Border(TableBorder.Rounded);
+        groupTable.AddColumn("[yellow]ID[/]");
+        groupTable.AddColumn("[cyan]Qrup Adı[/]");
+        groupTable.AddColumn("[green]Müəllim[/]");
+        foreach (var g in allGroups)
+        {
+            groupTable.AddRow(g.Id.ToString(), g.Name, g.Teacher);
+        }
+        AnsiConsole.Write(groupTable);
+
+        SelectGroupId:
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Qrupun ID-sini daxil edin: ");
         string groupIdStr = Console.ReadLine();
         int groupId;
         bool isGroupId = int.TryParse(groupIdStr, out groupId);
@@ -260,26 +283,31 @@ public class StudentController
             try
             {
                 var students = _studentService.GetAllByGroupId(groupId);
+
                 var table = new Table().Border(TableBorder.Rounded);
                 table.AddColumn("[yellow]ID[/]");
                 table.AddColumn("[cyan]Ad[/]");
                 table.AddColumn("[cyan]Soyad[/]");
                 table.AddColumn("[green]Yaş[/]");
                 table.AddColumn("[magenta]Qrup[/]");
+
                 foreach (var student in students)
                 {
                     table.AddRow(
-                        student.Id.ToString(), 
+                        student.Id.ToString(),
                         student.Name,
-                        student.Surname, 
+                        student.Surname,
                         student.Age.ToString(),
-                        student.Group.Name);
+                        student.Group.Name
+                    );
                 }
+
                 AnsiConsole.Write(table);
             }
             catch (Exception ex)
             {
                 AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+                goto SelectGroupId;  
             }
         }
         else
@@ -288,8 +316,10 @@ public class StudentController
             goto SelectGroupId;
         }
     }
+
     public void SearchByNameOrSurname()
     {
+        searchName:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Ad və ya soyadı daxil edin: ");
         string search = Console.ReadLine();
 
@@ -320,6 +350,6 @@ public class StudentController
         catch (Exception ex)
         {
             AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+            goto searchName;  
         }
-    }
-}
+    }}

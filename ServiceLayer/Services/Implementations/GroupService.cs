@@ -26,9 +26,11 @@ public class GroupService:IGroupService
         if (existGroup is null)
             throw new Exception("Yenilənəcək qrup tapılmadı!");
 
-        group.Id = id;
-        _groupRepository.Update(group);
-        return group;
+        existGroup.Name = group.Name;
+        existGroup.Teacher = group.Teacher;  
+        existGroup.RoomCount = group.RoomCount;
+
+        return existGroup;
     }
 
     public void Delete(int id)

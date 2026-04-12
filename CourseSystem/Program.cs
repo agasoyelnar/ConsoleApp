@@ -9,16 +9,6 @@ namespace CourseSystem
     {
         static void Main(string[] args)
         {
-            Console.Clear();
-            Helper.PrintConsole(ConsoleColor.Cyan, @"
-  ____ ___  _   _ ____  ____  _____      _    ____  ____  
- / ___/ _ \| | | |  _ \/ ___|| ____|    / \  |  _ \|  _ \ 
-
-| |  | | | | | | | |_) \___ \|  _|     / _ \ | |_) | |_) |
-| |__| |_| | |_| |  _ < ___) | |___   / ___ \|  __/|  __/ 
- \____\___/ \___/|_| \_\____/|_____| /_/   \_\_|   |_|    
-");
-
             GroupController groupController = new();
             StudentController studentController = new();
 
@@ -83,7 +73,7 @@ namespace CourseSystem
                         case "ID-yə görə": groupController.GetById(); break;
                         case "Müəllimə görə": groupController.GetAllByTeacher(); break;
                         case "Otaq sayına görə": groupController.GetAllByRoom(); break;
-                        case "Ada görə qrupu axtar": groupController.SearchByName(); break;  // ← düzəldildi
+                        case "Ada görə qrupu axtar": groupController.SearchByName(); break;
                         case "Hamısını göstər": groupController.GetAll(); break;
                     }
                 }
@@ -92,19 +82,20 @@ namespace CourseSystem
                     var studentChoice = AnsiConsole.Prompt(
                         new SelectionPrompt<string>()
                             .Title("[yellow]Tələbə əməliyyatını seçin:[/]")
-                            .AddChoices(new[] 
-                                { 
-                                    "Tələbə yarat", 
-                                    "Tələbəni sil", 
-                                    "Tələbəni yenilə",
-                                    "Geri" }));
+                            .AddChoices(new[]
+                            {
+                                "Tələbə yarat",
+                                "Tələbəni sil",
+                                "Tələbəni yenilə",
+                                "Geri"
+                            }));
 
                     if (studentChoice == "Geri") continue;
 
                     switch (studentChoice)
                     {
                         case "Tələbə yarat": studentController.Create(); break;
-                        case "Tələbəni sil": studentController.Delete(); break;  
+                        case "Tələbəni sil": studentController.Delete(); break;
                         case "Tələbəni yenilə": studentController.Update(); break;
                     }
                 }
@@ -126,7 +117,7 @@ namespace CourseSystem
 
                     switch (getChoice)
                     {
-                        case "ID-yə görə": studentController.GetById(); break; 
+                        case "ID-yə görə": studentController.GetById(); break;
                         case "Yaşa görə": studentController.GetAllByAge(); break;
                         case "Qrup ID-sinə görə": studentController.GetAllByGroupId(); break;
                         case "Ada və ya soyadа görə axtar": studentController.SearchByNameOrSurname(); break;

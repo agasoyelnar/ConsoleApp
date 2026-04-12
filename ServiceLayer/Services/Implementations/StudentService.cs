@@ -61,11 +61,13 @@ public class StudentService : IStudentService
     {
         if (age <= 0)
             throw new Exception("Yaş 0-dan böyük olmalıdır!");
-        var students= _studentRepository.GetAll(s => s.Age >= age);
-        if (students.Count == 0)
-            throw new Exception("Bu yaşda tələbə tapılmadı");
+
+        var students = _studentRepository.GetAll(s => s.Age == age);
+    
+        if (students is null || students.Count == 0)
+            throw new Exception("Bu yaşda tələbə tapılmadı!");
+
         return students;
-        
     }
 
     public List<Student> GetAllByGroupId(int groupId)
