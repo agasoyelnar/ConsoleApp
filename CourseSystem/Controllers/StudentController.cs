@@ -248,4 +248,78 @@ public class StudentController
             goto SelectAge;
         }
     }
+
+    public void GetAllByGroupId()
+    {
+        SelectGroupId:Helper.PrintConsole(ConsoleColor.Blue,text:"Qrupun ID-sini daxil edin: ");
+        string groupIdStr = Console.ReadLine();
+        int groupId;
+        bool isGroupId = int.TryParse(groupIdStr, out groupId);
+        if (isGroupId)
+        {
+            try
+            {
+                var students = _studentService.GetAllByGroupId(groupId);
+                var table = new Table().Border(TableBorder.Rounded);
+                table.AddColumn("[yellow]ID[/]");
+                table.AddColumn("[cyan]Ad[/]");
+                table.AddColumn("[cyan]Soyad[/]");
+                table.AddColumn("[green]Yaş[/]");
+                table.AddColumn("[magenta]Qrup[/]");
+                foreach (var student in students)
+                {
+                    table.AddRow(
+                        student.Id.ToString(), 
+                        student.Name,
+                        student.Surname, 
+                        student.Age.ToString(),
+                        student.Group.Name);
+                }
+                AnsiConsole.Write(table);
+            }
+            catch (Exception ex)
+            {
+                AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+            }
+        }
+        else
+        {
+            AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün ID daxil edin![/]");
+            goto SelectGroupId;
+        }
+    }
+    public void SearchByNameOrSurname()
+    {
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Ad və ya soyadı daxil edin: ");
+        string search = Console.ReadLine();
+
+        try
+        {
+            var students = _studentService.SearchByNameOrSurname(search);
+
+            var table = new Table().Border(TableBorder.Rounded);
+            table.AddColumn("[yellow]ID[/]");
+            table.AddColumn("[cyan]Ad[/]");
+            table.AddColumn("[cyan]Soyad[/]");
+            table.AddColumn("[green]Yaş[/]");
+            table.AddColumn("[magenta]Qrup[/]");
+
+            foreach (var student in students)
+            {
+                table.AddRow(
+                    student.Id.ToString(),
+                    student.Name,
+                    student.Surname,
+                    student.Age.ToString(),
+                    student.Group.Name
+                );
+            }
+
+            AnsiConsole.Write(table);
+        }
+        catch (Exception ex)
+        {
+            AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+        }
+    }
 }

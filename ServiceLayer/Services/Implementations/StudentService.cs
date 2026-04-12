@@ -67,4 +67,28 @@ public class StudentService : IStudentService
         return students;
         
     }
+
+    public List<Student> GetAllByGroupId(int groupId)
+    {
+        if (groupId <= 0)
+            throw new Exception("Qrup ID-si 0-dan böyük olmalıdır!");
+        var students=_studentRepository.GetAll(s=>s.Group.Id==groupId);
+        if (students.Count == 0)
+            throw new Exception("Bu qrupa aid tələbə tapılmadı!");
+        return students;
+    }
+    public List<Student> SearchByNameOrSurname(string search)
+    {
+        if (string.IsNullOrWhiteSpace(search))
+            throw new Exception("Axtarış üçün yer boş ola bilməz!");
+
+        var students = _studentRepository.GetAll(s => 
+            s.Name.ToLower().Contains(search.ToLower()) || 
+            s.Surname.ToLower().Contains(search.ToLower()));
+
+        if (students.Count == 0)
+            throw new Exception("Bu ada və ya soyadа uyğun tələbə tapılmadı!");
+
+        return students;
+    }
 }

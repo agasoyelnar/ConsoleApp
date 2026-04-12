@@ -117,6 +117,8 @@ namespace CourseSystem
                             {
                                 "ID-yə görə",
                                 "Yaşa görə",
+                                "Qrup ID-sinə görə",
+                                "Ada və ya soyadа görə axtar",
                                 "Geri"
                             }));
 
@@ -126,6 +128,8 @@ namespace CourseSystem
                     {
                         case "ID-yə görə": studentController.GetById(); break; 
                         case "Yaşa görə": studentController.GetAllByAge(); break;
+                        case "Qrup ID-sinə görə": studentController.GetAllByGroupId(); break;
+                        case "Ada və ya soyadа görə axtar": studentController.SearchByNameOrSurname(); break;
                     }
                 }
 
