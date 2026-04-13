@@ -23,6 +23,11 @@ public class GroupController
             AnsiConsole.MarkupLine("[red]Qrup adı boş ola bilməz![/]");
             goto groupName;
         }
+        if (groupName.All(char.IsDigit))
+        {
+            AnsiConsole.MarkupLine("[red]Qrup adı yalnız rəqəmlərdən ibarət ola bilməz![/]");
+            goto groupName;
+        }
 
     teacherName:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Müəllimin adını daxil edin: ");
@@ -34,7 +39,7 @@ public class GroupController
         }
         if (teacher.Any(char.IsDigit))
         {
-            AnsiConsole.MarkupLine("[red]Müəllim adı rəqəm ehtiva edə bilməz![/]");
+            AnsiConsole.MarkupLine("[red]Müəllim adı rəqəm ola bilməz![/]");
             goto teacherName;
         }
 
@@ -297,11 +302,7 @@ public class GroupController
             AnsiConsole.MarkupLine("[red]Axtarış mətni boş ola bilməz![/]");
             goto searchName;
         }
-        if (name.Any(char.IsDigit))
-        {
-            AnsiConsole.MarkupLine("[red]Qrup adı rəqəm ehtiva edə bilməz![/]");
-            goto searchName;
-        }
+
 
         try
         {

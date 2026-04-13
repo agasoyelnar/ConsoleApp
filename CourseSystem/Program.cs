@@ -19,9 +19,9 @@ namespace CourseSystem
             {
                 Console.Clear();
                 AnsiConsole.Write(new FigletText("COURSE APP").Centered().Color(Color.Cyan1));
-                Helper.PrintConsole(ConsoleColor.DarkGray, "===========================================================");
+                Helper.PrintConsole(ConsoleColor.DarkGray, "========================================================");
                 Helper.PrintConsole(ConsoleColor.Yellow, "       TƏLƏBƏ VƏ QRUP İDARƏETMƏ SİSTEMİ ");
-                Helper.PrintConsole(ConsoleColor.DarkGray, "===========================================================");
+                Helper.PrintConsole(ConsoleColor.DarkGray, "=========================================================");
                 Console.WriteLine();
 
                 var mainChoice = AnsiConsole.Prompt(

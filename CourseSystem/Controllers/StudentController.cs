@@ -26,7 +26,7 @@ public class StudentController
         }
         if (name.Any(char.IsDigit))
         {
-            AnsiConsole.MarkupLine("[red]Ad rəqəm ehtiva edə bilməz![/]");
+            AnsiConsole.MarkupLine("[red]Ad rəqəm ola bilməz![/]");
             goto studentName;
         }
 
@@ -40,7 +40,7 @@ public class StudentController
         }
         if (surname.Any(char.IsDigit))
         {
-            AnsiConsole.MarkupLine("[red]Soyad rəqəm ehtiva edə bilməz![/]");
+            AnsiConsole.MarkupLine("[red]Soyad rəqəm ola bilməz![/]");
             goto studentSurname;
         }
 
