@@ -6,8 +6,8 @@ namespace ServiceLayer.Services.Implementations;
 
 public class StudentService : IStudentService
 {
-    private StudentRepository _studentRepository = new();
-    private int _count = 1;
+    private static StudentRepository _studentRepository = new();
+    private static int _count = 1;
 
     public Student Create(Student student)
     {
@@ -82,11 +82,11 @@ public class StudentService : IStudentService
     public List<Student> SearchByNameOrSurname(string search)
     {
         if (string.IsNullOrWhiteSpace(search))
-            throw new Exception("Axtarış üçün yer boş ola bilməz!");
+            throw new Exception("Axtarış üçün mətn boş ola bilməz!");
 
-        var students = _studentRepository.GetAll(s => 
-            s.Name.ToLower().Contains(search.ToLower()) || 
-            s.Surname.ToLower().Contains(search.ToLower()));
+        var students = _studentRepository.GetAll(s =>
+            s.Name.ToLower() == search.ToLower() ||
+            s.Surname.ToLower() == search.ToLower());
 
         if (students.Count == 0)
             throw new Exception("Bu ada və ya soyadа uyğun tələbə tapılmadı!");

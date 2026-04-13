@@ -1,0 +1,185 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{34C909E3-69D8-48CD-B476-F6E833656BAA}|CourseSystem\\CourseSystem.csproj|c:\\users\\classtime\\desktop\\consoleapp\\coursesystem\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34C909E3-69D8-48CD-B476-F6E833656BAA}|CourseSystem\\CourseSystem.csproj|solutionrelative:coursesystem\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5A858C8-AA29-4A57-B71C-E9DE39032D2B}|ServiceLayer\\ServiceLayer.csproj|c:\\users\\classtime\\desktop\\consoleapp\\servicelayer\\services\\implementations\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5A858C8-AA29-4A57-B71C-E9DE39032D2B}|ServiceLayer\\ServiceLayer.csproj|solutionrelative:servicelayer\\services\\implementations\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34C909E3-69D8-48CD-B476-F6E833656BAA}|CourseSystem\\CourseSystem.csproj|c:\\users\\classtime\\desktop\\consoleapp\\coursesystem\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34C909E3-69D8-48CD-B476-F6E833656BAA}|CourseSystem\\CourseSystem.csproj|solutionrelative:coursesystem\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34C909E3-69D8-48CD-B476-F6E833656BAA}|CourseSystem\\CourseSystem.csproj|c:\\users\\classtime\\desktop\\consoleapp\\coursesystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34C909E3-69D8-48CD-B476-F6E833656BAA}|CourseSystem\\CourseSystem.csproj|solutionrelative:coursesystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9053E9D2-7288-432F-9285-8BA43D89DB40}|RepositoryLayer\\RepositoryLayer.csproj|c:\\users\\classtime\\desktop\\consoleapp\\repositorylayer\\repositories\\implementations\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9053E9D2-7288-432F-9285-8BA43D89DB40}|RepositoryLayer\\RepositoryLayer.csproj|solutionrelative:repositorylayer\\repositories\\implementations\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9053E9D2-7288-432F-9285-8BA43D89DB40}|RepositoryLayer\\RepositoryLayer.csproj|c:\\users\\classtime\\desktop\\consoleapp\\repositorylayer\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9053E9D2-7288-432F-9285-8BA43D89DB40}|RepositoryLayer\\RepositoryLayer.csproj|solutionrelative:repositorylayer\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5A858C8-AA29-4A57-B71C-E9DE39032D2B}|ServiceLayer\\ServiceLayer.csproj|c:\\users\\classtime\\desktop\\consoleapp\\servicelayer\\services\\implementations\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5A858C8-AA29-4A57-B71C-E9DE39032D2B}|ServiceLayer\\ServiceLayer.csproj|solutionrelative:servicelayer\\services\\implementations\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9053E9D2-7288-432F-9285-8BA43D89DB40}|RepositoryLayer\\RepositoryLayer.csproj|c:\\users\\classtime\\desktop\\consoleapp\\repositorylayer\\repositorylayer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{9053E9D2-7288-432F-9285-8BA43D89DB40}|RepositoryLayer\\RepositoryLayer.csproj|solutionrelative:repositorylayer\\repositorylayer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A357C881-6AEE-4682-B70D-1A7BFA9FE5DA}|DomainLayer\\DomainLayer.csproj|c:\\users\\classtime\\desktop\\consoleapp\\domainlayer\\domainlayer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A357C881-6AEE-4682-B70D-1A7BFA9FE5DA}|DomainLayer\\DomainLayer.csproj|solutionrelative:domainlayer\\domainlayer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34C909E3-69D8-48CD-B476-F6E833656BAA}|CourseSystem\\CourseSystem.csproj|c:\\users\\classtime\\desktop\\consoleapp\\coursesystem\\coursesystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{34C909E3-69D8-48CD-B476-F6E833656BAA}|CourseSystem\\CourseSystem.csproj|solutionrelative:coursesystem\\coursesystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentService.cs",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\ServiceLayer\\Services\\Implementations\\StudentService.cs",
+              "RelativeDocumentMoniker": "ServiceLayer\\Services\\Implementations\\StudentService.cs",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\ServiceLayer\\Services\\Implementations\\StudentService.cs",
+              "RelativeToolTip": "ServiceLayer\\Services\\Implementations\\StudentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T05:07:28.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\CourseSystem\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "CourseSystem\\Controllers\\StudentController.cs",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\CourseSystem\\Controllers\\StudentController.cs",
+              "RelativeToolTip": "CourseSystem\\Controllers\\StudentController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAuwCwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T04:46:33.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GroupController.cs",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\CourseSystem\\Controllers\\GroupController.cs",
+              "RelativeDocumentMoniker": "CourseSystem\\Controllers\\GroupController.cs",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\CourseSystem\\Controllers\\GroupController.cs",
+              "RelativeToolTip": "CourseSystem\\Controllers\\GroupController.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAowA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T04:45:33.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\CourseSystem\\Program.cs",
+              "RelativeDocumentMoniker": "CourseSystem\\Program.cs",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\CourseSystem\\Program.cs",
+              "RelativeToolTip": "CourseSystem\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T04:06:12.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StudentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\RepositoryLayer\\Repositories\\Implementations\\StudentRepository.cs",
+              "RelativeDocumentMoniker": "RepositoryLayer\\Repositories\\Implementations\\StudentRepository.cs",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\RepositoryLayer\\Repositories\\Implementations\\StudentRepository.cs",
+              "RelativeToolTip": "RepositoryLayer\\Repositories\\Implementations\\StudentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T05:38:04.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\RepositoryLayer\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "RepositoryLayer\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\RepositoryLayer\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "RepositoryLayer\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T05:50:26.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GroupService.cs",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\ServiceLayer\\Services\\Implementations\\GroupService.cs",
+              "RelativeDocumentMoniker": "ServiceLayer\\Services\\Implementations\\GroupService.cs",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\ServiceLayer\\Services\\Implementations\\GroupService.cs",
+              "RelativeToolTip": "ServiceLayer\\Services\\Implementations\\GroupService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwDwAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T05:08:59.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RepositoryLayer.csproj",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\RepositoryLayer\\RepositoryLayer.csproj",
+              "RelativeDocumentMoniker": "RepositoryLayer\\RepositoryLayer.csproj",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\RepositoryLayer\\RepositoryLayer.csproj",
+              "RelativeToolTip": "RepositoryLayer\\RepositoryLayer.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-13T04:38:16.59Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DomainLayer.csproj",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\DomainLayer\\DomainLayer.csproj",
+              "RelativeDocumentMoniker": "DomainLayer\\DomainLayer.csproj",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\DomainLayer\\DomainLayer.csproj",
+              "RelativeToolTip": "DomainLayer\\DomainLayer.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-13T04:38:09.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CourseSystem.csproj",
+              "DocumentMoniker": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\CourseSystem\\CourseSystem.csproj",
+              "RelativeDocumentMoniker": "CourseSystem\\CourseSystem.csproj",
+              "ToolTip": "C:\\Users\\Classtime\\Desktop\\ConsoleApp\\CourseSystem\\CourseSystem.csproj",
+              "RelativeToolTip": "CourseSystem\\CourseSystem.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-13T04:38:00.364Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

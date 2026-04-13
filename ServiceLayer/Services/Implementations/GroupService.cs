@@ -82,7 +82,8 @@ public class GroupService:IGroupService
         if (string.IsNullOrWhiteSpace(name))
             throw new Exception("Axtarış üçün ad boş ola bilməz!");
 
-        var groups = _groupRepository.GetAll(g => g.Name.Contains(name));
+        var groups = _groupRepository.GetAll(g => g.Name.ToLower() == name.ToLower());
+
         if (groups.Count == 0)
             throw new Exception("Bu ada uyğun qrup tapılmadı!");
 

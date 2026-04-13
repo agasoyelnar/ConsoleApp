@@ -7,17 +7,44 @@ namespace CourseSystem.Controllers;
 
 public class StudentController
 {
-    StudentService _studentService = new();
+    private static StudentService _studentService = new();
+    private static GroupService _groupService = new();
+    public StudentController(GroupService groupService)
+    {
+        _groupService = groupService;
+    }
 
     public void Create()
     {
+    studentName:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Tələbənin adını daxil edin: ");
         string name = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            AnsiConsole.MarkupLine("[red]Ad boş ola bilməz![/]");
+            goto studentName;
+        }
+        if (name.Any(char.IsDigit))
+        {
+            AnsiConsole.MarkupLine("[red]Ad rəqəm ehtiva edə bilməz![/]");
+            goto studentName;
+        }
 
+    studentSurname:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Tələbənin soyadını daxil edin: ");
         string surname = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(surname))
+        {
+            AnsiConsole.MarkupLine("[red]Soyad boş ola bilməz![/]");
+            goto studentSurname;
+        }
+        if (surname.Any(char.IsDigit))
+        {
+            AnsiConsole.MarkupLine("[red]Soyad rəqəm ehtiva edə bilməz![/]");
+            goto studentSurname;
+        }
 
-        SelectAge:
+    SelectAge:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Tələbənin yaşını daxil edin: ");
         string ageStr = Console.ReadLine();
         int age;
@@ -27,9 +54,13 @@ public class StudentController
             AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün yaş daxil edin![/]");
             goto SelectAge;
         }
+        if (age <= 17 || age >= 100)
+        {
+            AnsiConsole.MarkupLine("[red]Yaş 18-dən yuxarı olmalıdır![/]");
+            goto SelectAge;
+        }
 
-        GroupService groupService = new();
-        var allGroups = groupService.GetAll();
+        var allGroups = _groupService.GetAll();
         if (allGroups.Count == 0)
         {
             AnsiConsole.MarkupLine("[red]Sistemdə heç bir qrup yoxdur! Əvvəlcə qrup yaradın.[/]");
@@ -138,6 +169,7 @@ public class StudentController
 
     public void Update()
     {
+    updateId:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Yenilənəcək tələbənin ID-sini daxil edin: ");
         string studentId = Console.ReadLine();
         int id;
@@ -145,16 +177,38 @@ public class StudentController
         if (!isId)
         {
             AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün ID daxil edin![/]");
-            return;
+            goto updateId;
         }
 
-        Helper.PrintConsole(ConsoleColor.Blue, text: "Yeni adı daxil edin: ");
+    studentName:
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Tələbənin adını daxil edin: ");
         string name = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            AnsiConsole.MarkupLine("[red]Ad boş ola bilməz![/]");
+            goto studentName;
+        }
+        if (name.Any(char.IsDigit))
+        {
+            AnsiConsole.MarkupLine("[red]Ad rəqəm ehtiva edə bilməz![/]");
+            goto studentName;
+        }
 
-        Helper.PrintConsole(ConsoleColor.Blue, text: "Yeni soyadı daxil edin: ");
+    studentSurname:
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Tələbənin soyadını daxil edin: ");
         string surname = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(surname))
+        {
+            AnsiConsole.MarkupLine("[red]Soyad boş ola bilməz![/]");
+            goto studentSurname;
+        }
+        if (surname.Any(char.IsDigit))
+        {
+            AnsiConsole.MarkupLine("[red]Soyad rəqəm ehtiva edə bilməz![/]");
+            goto studentSurname;
+        }
 
-        SelectAge:
+    SelectAge:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Yeni yaşı daxil edin: ");
         string ageStr = Console.ReadLine();
         int age;
@@ -182,13 +236,7 @@ public class StudentController
 
         try
         {
-            Student student = new Student
-            {
-                Name = name,
-                Surname = surname,
-                Age = age,
-                Group = selectedGroup
-            };
+            Student student = new Student { Name = name, Surname = surname, Age = age, Group = selectedGroup };
             var result = _studentService.Update(id, student);
 
             AnsiConsole.Status()
@@ -198,12 +246,12 @@ public class StudentController
                     Thread.Sleep(1000);
                 });
 
-            AnsiConsole.MarkupLine(
-                $"[green]Tələbə uğurla yeniləndi! Id: {result.Id}, Ad: {result.Name}, Soyad: {result.Surname}, Yaş: {result.Age}, Qrup: {result.Group.Name}[/]");
+            AnsiConsole.MarkupLine($"[green]Tələbə uğurla yeniləndi! Id: {result.Id}, Ad: {result.Name}, Soyad: {result.Surname}, Yaş: {result.Age}, Qrup: {result.Group.Name}[/]");
         }
         catch (Exception ex)
         {
             AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
+            goto updateId;
         }
     }
 
@@ -352,4 +400,5 @@ public class StudentController
             AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
             goto searchName;  
         }
-    }}
+    }
+}

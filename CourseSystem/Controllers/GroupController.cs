@@ -7,17 +7,38 @@ namespace CourseSystem.Controllers;
 
 public class GroupController
 {
-    GroupService _groupService=new(); 
+    private static GroupService _groupService=new();
+    public GroupController(GroupService groupService)
+    {
+        _groupService = groupService;
+    }
 
     public void Create()
     {
+    groupName:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Qrupun adını daxil edin: ");
         string groupName = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(groupName))
+        {
+            AnsiConsole.MarkupLine("[red]Qrup adı boş ola bilməz![/]");
+            goto groupName;
+        }
 
+    teacherName:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Müəllimin adını daxil edin: ");
         string teacher = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(teacher))
+        {
+            AnsiConsole.MarkupLine("[red]Müəllim adı boş ola bilməz![/]");
+            goto teacherName;
+        }
+        if (teacher.Any(char.IsDigit))
+        {
+            AnsiConsole.MarkupLine("[red]Müəllim adı rəqəm ehtiva edə bilməz![/]");
+            goto teacherName;
+        }
 
-        SelectCase: 
+    SelectCase:
         Helper.PrintConsole(ConsoleColor.White, text: "Otaq sayını daxil edin: ");
         string groupRoomCount = Console.ReadLine();
         int roomCount;
@@ -38,14 +59,15 @@ public class GroupController
         else
         {
             Helper.PrintConsole(ConsoleColor.Red, text: "Zəhmət olmasa düzgün rəqəm daxil edin!");
+            Console.WriteLine();
             goto SelectCase;
         }
-       
+
         AnsiConsole.Status()
-            .Start("Qrup bazaya əlavə edilir...", ctx => 
+            .Start("Qrup bazaya əlavə edilir...", ctx =>
             {
                 ctx.Spinner(Spinner.Known.Dots);
-                Thread.Sleep(1500); 
+                Thread.Sleep(1500);
             });
     }
 
@@ -140,47 +162,60 @@ public class GroupController
 
     public void Update()
     {
-        updateId:
+    updateId:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Yenilənəcək qrupun ID-sini daxil edin: ");
         string groupId = Console.ReadLine();
         int id;
         bool isId = int.TryParse(groupId, out id);
-        if (isId)
-        {
-            Helper.PrintConsole(ConsoleColor.Blue, text: "Yeni qrup adını daxil edin: ");
-            string groupName = Console.ReadLine();
-
-            Helper.PrintConsole(ConsoleColor.Blue, text: "Yeni müəllimin adını daxil edin: ");
-            string teacher = Console.ReadLine();
-
-            SelectCase:
-            Helper.PrintConsole(ConsoleColor.White, text: "Yeni otaq sayını daxil edin: ");
-            string groupRoomCount = Console.ReadLine();
-            int roomCount;
-            bool isRoomCount = int.TryParse(groupRoomCount, out roomCount);
-            if (isRoomCount)
-            {
-                try
-                {
-                    Group group = new Group { Name = groupName, Teacher = teacher, RoomCount = roomCount };
-                    var result = _groupService.Update(id, group);
-                    AnsiConsole.MarkupLine($"[green]Qrup uğurla yeniləndi! Id: {result.Id}, Ad: {result.Name}, Müəllim: {result.Teacher}, Otaq sayı: {result.RoomCount}[/]");
-                }
-                catch (Exception ex)
-                {
-                    AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
-                    goto updateId; 
-                }
-            }
-            else
-            {
-                AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün rəqəm daxil edin![/]");
-                goto SelectCase;
-            }
-        }
-        else
+        if (!isId)
         {
             AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün ID daxil edin![/]");
+            goto updateId;
+        }
+
+    groupName:
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Yeni qrup adını daxil edin: ");
+        string groupName = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(groupName))
+        {
+            AnsiConsole.MarkupLine("[red]Qrup adı boş ola bilməz![/]");
+            goto groupName;
+        }
+
+    teacherName:
+        Helper.PrintConsole(ConsoleColor.Blue, text: "Müəllimin adını daxil edin: ");
+        string teacher = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(teacher))
+        {
+            AnsiConsole.MarkupLine("[red]Müəllim adı boş ola bilməz![/]");
+            goto teacherName;
+        }
+        if (teacher.Any(char.IsDigit))
+        {
+            AnsiConsole.MarkupLine("[red]Müəllim adı rəqəm ehtiva edə bilməz![/]");
+            goto teacherName;
+        }
+
+    SelectCase:
+        Helper.PrintConsole(ConsoleColor.White, text: "Yeni otaq sayını daxil edin: ");
+        string groupRoomCount = Console.ReadLine();
+        int roomCount;
+        bool isRoomCount = int.TryParse(groupRoomCount, out roomCount);
+        if (!isRoomCount)
+        {
+            AnsiConsole.MarkupLine("[red]Zəhmət olmasa düzgün rəqəm daxil edin![/]");
+            goto SelectCase;
+        }
+
+        try
+        {
+            Group group = new Group { Name = groupName, Teacher = teacher, RoomCount = roomCount };
+            var result = _groupService.Update(id, group);
+            AnsiConsole.MarkupLine($"[green]Qrup uğurla yeniləndi! Id: {result.Id}, Ad: {result.Name}, Müəllim: {result.Teacher}, Otaq sayı: {result.RoomCount}[/]");
+        }
+        catch (Exception ex)
+        {
+            AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
             goto updateId;
         }
     }
@@ -254,9 +289,19 @@ public class GroupController
 
     public void SearchByName()
     {
-        searchName:
+    searchName:
         Helper.PrintConsole(ConsoleColor.Blue, text: "Axtarılacaq qrup adını daxil edin: ");
         string name = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            AnsiConsole.MarkupLine("[red]Axtarış mətni boş ola bilməz![/]");
+            goto searchName;
+        }
+        if (name.Any(char.IsDigit))
+        {
+            AnsiConsole.MarkupLine("[red]Qrup adı rəqəm ehtiva edə bilməz![/]");
+            goto searchName;
+        }
 
         try
         {
@@ -278,7 +323,7 @@ public class GroupController
         catch (Exception ex)
         {
             AnsiConsole.MarkupLine($"[red]{ex.Message}[/]");
-            goto searchName;  
+            goto searchName;
         }
     }
 }

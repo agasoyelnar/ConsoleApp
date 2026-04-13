@@ -1,6 +1,7 @@
 ﻿using System;
 using CourseSystem.Controllers;
 using CourseSystem.Helpers;
+using ServiceLayer.Services.Implementations;
 using Spectre.Console;
 
 namespace CourseSystem
@@ -9,8 +10,10 @@ namespace CourseSystem
     {
         static void Main(string[] args)
         {
-            GroupController groupController = new();
-            StudentController studentController = new();
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            GroupService groupService = new();
+            GroupController groupController = new(groupService);
+            StudentController studentController = new(groupService);
 
             while (true)
             {
